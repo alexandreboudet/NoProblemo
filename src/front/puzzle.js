@@ -8,7 +8,11 @@ $(document).ready(() => {
 
 
     let outputData = [
-
+        ["13\'","","",""],
+        ["15\'","","",""],
+        ["15\'6","","",""],
+        ["21\'5","","",""],
+        ["27\'","","",""]
     ];
 
 
@@ -69,7 +73,7 @@ $(document).ready(() => {
         return generatedTable;
     }
 
-    let personalComputerStructureData = [
+    const personalComputerStructureData = [
         [
             {
                 leftPane : monitorHeader,
@@ -167,34 +171,44 @@ $(document).ready(() => {
     });
     
 
+    // Data Processing
+
     const correct = '<i class="fas fa-check green"></i>';
     const wrong = '<i class="fas fa-times red"></i>';
-    // Data Processing
 
     $('td[tableRowIndex]').click(function () {
         const tableRowIndex = $(this).attr("tableRowIndex");
         const tableColumnIndex = $(this).attr("tableColumnIndex");
         const cellRowIndex = $(this).attr("cellRowIndex");
         const cellColumnIndex =  $(this).attr("cellColumnIndex");
-        console.log(tableRowIndex+tableColumnIndex+cellRowIndex+cellColumnIndex);
+        currentDataTable = personalComputerStructureData[tableRowIndex][tableColumnIndex].centerDatatable;
         if(!$(this).html()) {
             $(this).html(wrong);
+            currentDataTable.valueList[cellRowIndex][cellColumnIndex] = false;
         } else if($(this).html() == wrong){
-            $("td[tableRowIndex='"+tableRowIndex+"'][tableColumnIndex='"+tableColumnIndex+"'][cellRowIndex='"+cellRowIndex+"']").each(function (parentIndex) {
+            $("td[tableRowIndex='"+tableRowIndex+"'][tableColumnIndex='"+tableColumnIndex+"'][cellRowIndex='"+cellRowIndex+"']").each(function () {
                 $(this).html(wrong);
             });
-            $("td[tableRowIndex='"+tableRowIndex+"'][tableColumnIndex='"+tableColumnIndex+"'][cellColumnIndex='"+cellColumnIndex+"']").each(function (parentIndex) {
+            $("td[tableRowIndex='"+tableRowIndex+"'][tableColumnIndex='"+tableColumnIndex+"'][cellColumnIndex='"+cellColumnIndex+"']").each(function () {
                 $(this).html(wrong);
             });
+            currentDataTable.valueList.forEach((row) => {row[cellColumnIndex] = false;})
+            for(let index in currentDataTable.valueList[cellRowIndex]) {
+                currentDataTable.valueList[cellRowIndex][index] = false;
+            }
             $(this).html(correct);
+            currentDataTable.valueList[cellRowIndex][cellColumnIndex] = true;
         } else {
-            $("td[tableRowIndex='"+tableRowIndex+"'][tableColumnIndex='"+tableColumnIndex+"'][cellRowIndex='"+cellRowIndex+"']").each(function (parentIndex) {
+            $("td[tableRowIndex='"+tableRowIndex+"'][tableColumnIndex='"+tableColumnIndex+"'][cellRowIndex='"+cellRowIndex+"']").each(function () {
                 $(this).html("");
             });
-            $("td[tableRowIndex='"+tableRowIndex+"'][tableColumnIndex='"+tableColumnIndex+"'][cellColumnIndex='"+cellColumnIndex+"']").each(function (parentIndex) {
+            $("td[tableRowIndex='"+tableRowIndex+"'][tableColumnIndex='"+tableColumnIndex+"'][cellColumnIndex='"+cellColumnIndex+"']").each(function () {
                 $(this).html("");
             });
-            $(this).html("");
+            currentDataTable.valueList.forEach((row) => {row[cellColumnIndex] = false;})
+            for(let index in currentDataTable.valueList[cellRowIndex]) {
+                currentDataTable.valueList[cellRowIndex][index] = false;
+            }
         }
     });
 
