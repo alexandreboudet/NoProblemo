@@ -1,11 +1,12 @@
 $(document).ready(() => {
 
-    $("#logs").click(() => {
-        console.table(personalComputerStructureData);
+    $("#checkAnswer").click(() => {
+        // TODO Submit
+        console.log("submit");
+        console.table(outputData);
     });
 
     // Init
-
 
     let outputData = [
         ["13\'","","",""],
@@ -153,13 +154,57 @@ $(document).ready(() => {
         "</table>"
     );
 
+    $("#personalComputerResult").append(
+        "<table class='table table-bordered table-sm'>"+
+            "<thead>"+
+                "<tr>"+
+                    "<th>Monitor</th>"+
+                    "<th>Processor</th>"+
+                    "<th>Hard Disk</th>"+
+                    "<th>Price</th>"+
+                "</tr>"+
+            "</thead>"+
+            "<tbody>"+
+                "<tr>"+
+                    "<td></td>"+
+                    "<td></td>"+
+                    "<td></td>"+
+                    "<td></td>"+
+                "</tr>"+
+                "<tr>"+
+                    "<td></td>"+
+                    "<td></td>"+
+                    "<td></td>"+
+                    "<td></td>"+
+                "</tr>"+
+                "<tr>"+
+                    "<td></td>"+
+                    "<td></td>"+
+                    "<td></td>"+
+                    "<td></td>"+
+                "</tr>"+
+                "<tr>"+
+                    "<td></td>"+
+                    "<td></td>"+
+                    "<td></td>"+
+                    "<td></td>"+
+                "</tr>"+
+                "<tr>"+
+                    "<td></td>"+
+                    "<td></td>"+
+                    "<td></td>"+
+                    "<td></td>"+
+                "</tr>"+
+            "</tbody>"+
+        "</table>"
+    );
+
     $("div#personalComputerPuzzle > table > tbody > tr").each(function (parentIndex) {
         $(this).children().each(function (childIndex) {
             if(parentIndex == 0) { // Upper row
                 if(childIndex == 0) { // First Cell -> To be empty
                     $(this).css("border","0")
                 } else {
-                    //console.log(personalComputerStructureData[0][childIndex-1].upperPane);
                     $(this).append(generateRowHeaderTable(personalComputerStructureData[0][childIndex-1].upperPane));
                 }
             } else if(childIndex == 0) { // Left Column excepting upper left one
@@ -170,6 +215,15 @@ $(document).ready(() => {
         });
     });
     
+    const refreshFinalMatrix = () => {
+        $("div#personalComputerResult > table > tbody > tr").each(function (parentIndex) {
+            $(this).children().each(function (childIndex) {
+                $(this).html(outputData[parentIndex][childIndex]);
+            });
+        });
+
+    }
+    refreshFinalMatrix();
 
     // Data Processing
 
@@ -209,6 +263,25 @@ $(document).ready(() => {
             for(let index in currentDataTable.valueList[cellRowIndex]) {
                 currentDataTable.valueList[cellRowIndex][index] = false;
             }
+        }
+
+        if(tableRowIndex == 0) {
+            outputData = [
+                ["13\'","","",""],
+                ["15\'","","",""],
+                ["15\'6","","",""],
+                ["21\'5","","",""],
+                ["27\'","","",""]
+            ];
+            personalComputerStructureData[tableRowIndex].forEach((category, categoryIndex) => {
+                category.centerDatatable.valueList.forEach((valueList, valueIndex) => {
+                    let hasLink = valueList.findIndex(item => item==true);
+                    if(hasLink >= 0) {
+                        outputData[valueIndex][categoryIndex+1] = personalComputerStructureData[tableRowIndex][categoryIndex].upperPane.labelList[hasLink];
+                    }
+                })
+            })
+            refreshFinalMatrix();
         }
     });
 

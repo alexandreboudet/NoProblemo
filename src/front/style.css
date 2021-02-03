@@ -28,6 +28,16 @@ table .middle-table tr td {
   border-right: 1px solid #ddd !important;
 }
 
+table.table {
+  table-layout: fixed;
+  width: 365px;
+  height: 164px;
+}
+
+#personalComputerResult > table > tbody > tr > td {
+  text-align: center;
+}
+
 .side-table {
   table-layout: fixed;
   width: 100%;
