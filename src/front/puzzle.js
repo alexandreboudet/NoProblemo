@@ -1,31 +1,29 @@
 $(document).ready(() => {
 
-    let monitorHeader = {
+    const monitorHeader = {
         title : "Monitor",
         labelList : ["13\'","15\'","15\'6","21\'5","27\'"]
     }
-    let processorHeader = {
+    const processorHeader = {
         title : "Processor",
         labelList : ["2.0 MHz","2.3 MHz","2.5 MHz","2.7 MHz","3.1 MHz"]
     }
-    let hardDiskHeader = {
+    const hardDiskHeader = {
         title : "Hard Disk",
-        labelList : ["250 Gb, 320 Gb, 500 Gb, 750 Gb, 1024 Gb"]
+        labelList : ["250 Gb","320 Gb","500 Gb","750 Gb","1024 Gb"]
     }
-    let priceHeader = {
+    const priceHeader = {
         title : "Price",
-        labelList : ["250 Gb, 320 Gb, 500 Gb, 750 Gb, 1024 Gb"]
+        labelList : ["$ 699,00","$ 999,00","$ 1.149,00","$ 1.349,00","$ 1.649,00"]
     }
 
-    let generateFiveByFiveEmptyTab = () => {
-        return [
-            [false,false,false,false,false],
-            [false,false,false,false,false],
-            [false,false,false,false,false],
-            [false,false,false,false,false],
-            [false,false,false,false,false]
-        ] ;
-    }
+    const generateFiveByFiveEmptyTab = () => [
+        [false,false,false,false,false],
+        [false,false,false,false,false],
+        [false,false,false,false,false],
+        [false,false,false,false,false],
+        [false,false,false,false,false]
+    ]; 
 
     let personalComputerStructureData = [
         {
@@ -71,5 +69,41 @@ $(document).ready(() => {
             }
         },
     ]
+
+
+    $("#personalComputerPuzzle").append(
+        "<table>"+
+            "<tbody>"+
+                "<tr id='firstRow'>"+
+                    "<td class='1'></td>"+
+                    "<td class='2'></td>"+
+                    "<td class='3'></td>"+
+                    "<td class='4'></td>"+
+                "</tr>"+
+                "<tr id='secondRow'>"+
+                    "<td class='1'></td>"+
+                    "<td class='2'></td>"+
+                    "<td class='3'></td>"+
+                    "<td class='4'></td>"+
+                "</tr>"+
+                "<tr id='thirdRow'>"+
+                    "<td class='1'></td>"+
+                    "<td class='2'></td>"+
+                    "<td class='3'></td>"+
+                "</tr>"+
+                "<tr id='fourthRow'>"+
+                    "<td class='1'></td>"+
+                    "<td class='2'></td>"+
+                "</tr>"+
+            "</tbody>"+
+        "</table>"
+    );
+    $("div#personalComputerPuzzle > table > tbody > tr").each(function (parentIndex) {
+        $(this).children().each(function (childIndex) {
+            console.log("chained index : "+parentIndex+"-"+childIndex);
+            $(this).append($(this).attr('class'));
+        });
+    });
+    
 
 });
