@@ -1,9 +1,96 @@
 .vertical {
+  display: inline-block !important;
+  white-space: nowrap;
   transform: translate(0%, 100%) rotate(-90deg);
+  transform-origin: 0 0;
+  font-size: 0.75rem;
 }
 
 .top-table {
   table-layout: fixed;
   width: 100%;
   height: 100%;
+}
+
+table .top-table tr td {
+  border: none;
+  border-right: 1px solid #ddd !important;
+}
+
+table .side-table tr td {
+  border: none;
+  border-top: 1px solid #ddd !important;
+}
+
+table .middle-table tr td {
+  border: none;
+  border-top: 1px solid #ddd !important;
+  border-right: 1px solid #ddd !important;
+}
+
+.side-table {
+  table-layout: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+td[tableRowIndex] {
+  height: 27px !important;
+}
+
+td[tableRowIndex]:hover {
+  cursor: pointer;
+  background-color: #eee;
+}
+
+table .middle-table {
+  table-layout: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+.fixedCell > tr > td {
+  width: 160px;
+  height: 131px;
+}
+
+td {
+  border: 2px solid #000;
+  padding-left: 0 !important;
+}
+
+.red {
+  color: red;
+}
+
+.green {
+  color: limegreen;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+table .top-table tr:first-child td {
+  text-align: center;
+  height: 20%;
+  background-color: #000;
+  color: #fff;
+}
+
+table .side-table tr:first-child td:first-child {
+  display: table-cell;
+  width: 25%;
+  background-color: #000;
+  color: #fff;
+  padding: 0;
+}
+
+table .side-table tr td {
+  font-size: 0.75rem;
+  text-align: right;
+  padding: 0 5px;
+  width: 75%;
+  white-space: nowrap;
+  overflow: hidden;
 }
