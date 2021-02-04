@@ -20,8 +20,15 @@ $(document).ready(() => {
                 }
             }
         }
-
-        console.log(personalComputerDznData);
+        
+        var data = {
+            array: personalComputerDznData 
+        }
+        
+        $.post("http://localhost:3000/checkAnswer", data, function(res, status) {
+            alert(res)  
+        })
+        //console.log(personalComputerDznData);
     });
     
     $("#movieBuffcheckAnswer").click(() => {
@@ -586,10 +593,3 @@ $(document).ready(() => {
     });
 
 });
-
-function checkAnswer(params) {
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open("GET", "http://localhost:3000/checkAnswer", false);
-    xmlHttp.send(null);
-    alert(xmlHttp.responseText)
-}
