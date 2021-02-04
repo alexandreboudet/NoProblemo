@@ -13,10 +13,10 @@ set of int :personne=1..5;
 int :Jessica=1;
 int :Laurie=2;
 int :Mark=3;
-int :Masry=4;
+int :Mary=4;
 int :Sally=5;
 array[personne] of int:sexe=[0,1,1,0,0];
-array[personne] of string:Personne_affich=["Jessica","Laurie","Mark","Masry","Sally"];
+array[personne] of string:Personne_affich=["Jessica","Laurie","Mark","Mary","Sally"];
 
 
 array[personne] of var personne :Personne;  
@@ -73,7 +73,7 @@ constraint all_different(Film);
 constraint Film[Mark] == Scarecrow;
 constraint Horaire[Scarecrow] == Horaire[Scarface]+105;
 constraint Film[Jessica] != minutes_88 /\ Film[Jessica]!= The_Recruit;
-constraint ((Jour[Masry] mod 2 )+(Jour[Jessica] mod 2 )) ==2;  
+constraint ((Jour[Mary] mod 2 )+(Jour[Jessica] mod 2 )) ==2;  
 
 constraint exists(i in personne)(sexe[i] == 1 /\ (Horaire[i]<800 /\ Jour[i] != Mercredi ) );
 
