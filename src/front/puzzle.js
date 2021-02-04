@@ -16,19 +16,19 @@ $(document).ready(() => {
     // Navbar
 
     $("#personalComputerButton").click(function () {
-        document.getElementById('personalComputer').style.display = 'flex';
+        document.getElementById('personalComputer').style.display = 'block';
         document.getElementById('movieBuff').style.display = 'none';
         document.getElementById('pastaWine').style.display = 'none';
     });
     $("#movieBuffButton").click(function () {
         document.getElementById('personalComputer').style.display = 'none';
-        document.getElementById('movieBuff').style.display = 'flex';
+        document.getElementById('movieBuff').style.display = 'block';
         document.getElementById('pastaWine').style.display = 'none';
     });
     $("#pastaWineButton").click(function () {
         document.getElementById('personalComputer').style.display = 'none';
         document.getElementById('movieBuff').style.display = 'none';
-        document.getElementById('pastaWine').style.display = 'flex';
+        document.getElementById('pastaWine').style.display = 'block';
     });
 
 
