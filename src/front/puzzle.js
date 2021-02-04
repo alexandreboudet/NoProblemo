@@ -3,14 +3,68 @@ $(document).ready(() => {
     // Submit
 
     $("#personalComputercheckAnswer").click(() => {
-        // TODO Submit Personal Computer
-        console.log("submit");
-        console.table(personalComputerOutputData);
+        let personalComputerDznData = [
+            [], // Monitor_dzn
+            [], // Processor_dzn
+            [], // Hard_disk_dzn
+            [] // Price_dzn
+        ];
+
+        for (let i = 0; i < 4; i++) {
+            for (let j = 0; j < 5; j++) {
+                let tempInd = personalComputerGlobalData[i].findIndex((element) => element == personalComputerOutputData[j][i]);
+                if(tempInd >= 0){
+                    personalComputerDznData[i].push(tempInd+1);
+                } else {
+                    personalComputerDznData[i].push("_");
+                }
+            }
+        }
+
+        console.log(personalComputerDznData);
     });
+    
     $("#movieBuffcheckAnswer").click(() => {
-        // TODO Submit Movie Buff
-        console.log("submit");
-        console.table(movieBuffOutputData);
+        let movieBuffDznData = [
+            [], // Personne_dzn
+            [], // Film_dzn
+            [], // Jour_dzn
+            [] // Horaire_dzn
+        ];
+
+        for (let i = 0; i < 4; i++) {
+            for (let j = 0; j < 5; j++) {
+                let tempInd = movieBuffGlobalData[i].findIndex((element) => element == movieBuffOutputData[j][i]);
+                if(tempInd >= 0){
+                    console.log(i);
+                    if(i == 3) {
+                        switch(tempInd) {
+                            case 0: 
+                                movieBuffDznData[i].push(735);
+                            break;
+                            case 1: 
+                                movieBuffDznData[i].push(740);
+                            break;
+                            case 2: 
+                                movieBuffDznData[i].push(820);
+                            break;
+                            case 3: 
+                                movieBuffDznData[i].push(830);
+                            break;
+                            case 4: 
+                                movieBuffDznData[i].push(845);
+                            break;
+                        }
+                    } else {
+                        movieBuffDznData[i].push(tempInd+1);
+                    }
+                } else {
+                    movieBuffDznData[i].push("_");
+                }
+            }
+        }
+
+        console.log(movieBuffDznData);
     });
 
     // Navbar
@@ -69,6 +123,14 @@ $(document).ready(() => {
     }
 
 
+    const personalComputerGlobalData = [
+        monitorHeader.labelList,
+        processorHeader.labelList,
+        hardDiskHeader.labelList,
+        priceHeader.labelList,
+    ]
+
+
     const filmHeader = {
         title : "Film",
         labelList : ["88 Minutes","Donnie Brasco","Scarecrow","Scarface","The Recruit"]
@@ -85,6 +147,14 @@ $(document).ready(() => {
         title : "Name",
         labelList : ["Jessica","Laurie","Mark","Mary","Sally",]
     }
+
+
+    const movieBuffGlobalData = [
+        nameHeader.labelList,
+        filmHeader.labelList,
+        dayHeader.labelList,
+        timeHeader.labelList,
+    ]
 
     const generateFiveByFiveEmptyTab = () => [
         [false,false,false,false,false],
