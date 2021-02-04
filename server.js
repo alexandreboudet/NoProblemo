@@ -20,10 +20,10 @@ app.get('/', (req, res) => {
 
 const checkAnswer = (request, response) => {
 
-    content = "Monitor_dzn= ["+request.body.array[0]+"]\n"+
-              "Processor_dzn= ["+request.body.array[1]+"]\n"+
-              "Hard_disk_dzn= ["+request.body.array[2]+"]\n"+
-              "Price_dzn= ["+request.body.array[3]+"]";
+    content = "Monitor_dzn= ["+request.body.array[0]+"];\n"+
+              "Processor_dzn= ["+request.body.array[1]+"];\n"+
+              "Hard_disk_dzn= ["+request.body.array[2]+"];\n"+
+              "Price_dzn= ["+request.body.array[3]+"];";
 
     console.log(content);
 
