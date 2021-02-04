@@ -1,19 +1,53 @@
 $(document).ready(() => {
 
-    $("#checkAnswer").click(() => {
-        // TODO Submit
+    // Submit
+
+    $("#personalComputercheckAnswer").click(() => {
+        // TODO Submit Personal Computer
         console.log("submit");
-        console.table(outputData);
+        console.table(personalComputerOutputData);
     });
+    $("#movieBuffcheckAnswer").click(() => {
+        // TODO Submit Movie Buff
+        console.log("submit");
+        console.table(movieBuffOutputData);
+    });
+
+    // Navbar
+
+    $("#personalComputerButton").click(function () {
+        document.getElementById('personalComputer').style.display = 'flex';
+        document.getElementById('movieBuff').style.display = 'none';
+        document.getElementById('pastaWine').style.display = 'none';
+    });
+    $("#movieBuffButton").click(function () {
+        document.getElementById('personalComputer').style.display = 'none';
+        document.getElementById('movieBuff').style.display = 'flex';
+        document.getElementById('pastaWine').style.display = 'none';
+    });
+    $("#pastaWineButton").click(function () {
+        document.getElementById('personalComputer').style.display = 'none';
+        document.getElementById('movieBuff').style.display = 'none';
+        document.getElementById('pastaWine').style.display = 'flex';
+    });
+
 
     // Init
 
-    let outputData = [
+    let personalComputerOutputData = [
         ["13\'","","",""],
         ["15\'","","",""],
         ["15\'6","","",""],
         ["21\'5","","",""],
         ["27\'","","",""]
+    ];
+
+    let movieBuffOutputData = [
+        ["Jessica","","",""],
+        ["Laurie","","",""],
+        ["Mark","","",""],
+        ["Mary","","",""],
+        ["Sally","","",""]
     ];
 
 
@@ -32,6 +66,24 @@ $(document).ready(() => {
     const priceHeader = {
         title : "Price",
         labelList : ["$ 699,00","$ 999,00","$ 1.149,00","$ 1.349,00","$ 1.649,00"]
+    }
+
+
+    const filmHeader = {
+        title : "Film",
+        labelList : ["88 Minutes","Donnie Brasco","Scarecrow","Scarface","The Recruit"]
+    }
+    const dayHeader = {
+        title : "Day",
+        labelList : ["Monday","Tuesday","Wednesday","Thursday","Friday"]
+    }
+    const timeHeader = {
+        title : "Time",
+        labelList : ["7:35pm","7:40pm","8:20pm","8:30pm","8:45pm"]
+    }
+    const nameHeader = {
+        title : "Name",
+        labelList : ["Jessica","Laurie","Mark","Mary","Sally",]
     }
 
     const generateFiveByFiveEmptyTab = () => [
@@ -124,9 +176,59 @@ $(document).ready(() => {
             },
         ]
     ]
+    const movieBuffStructureData = [
+        [
+            {
+                leftPane : nameHeader,
+                upperPane : filmHeader,
+                centerDatatable : {
+                    valueList : generateFiveByFiveEmptyTab()
+                }
+            },
+            {
+                leftPane : nameHeader,
+                upperPane : dayHeader,
+                centerDatatable : {
+                    valueList : generateFiveByFiveEmptyTab()
+                }
+            },
+            {
+                leftPane : nameHeader,
+                upperPane : timeHeader,
+                centerDatatable : {
+                    valueList : generateFiveByFiveEmptyTab()
+                }
+            },
+        ],
+        [
+            {
+                leftPane : timeHeader,
+                upperPane : filmHeader,
+                centerDatatable : {
+                    valueList : generateFiveByFiveEmptyTab()
+                }
+            },
+            {
+                leftPane : timeHeader,
+                upperPane : dayHeader,
+                centerDatatable : {
+                    valueList : generateFiveByFiveEmptyTab()
+                }
+            },
+        ],
+        [
+            {
+                leftPane : dayHeader,
+                upperPane : filmHeader,
+                centerDatatable : {
+                    valueList : generateFiveByFiveEmptyTab()
+                }
+            },
+        ]
+    ]
 
 
-    $("#personalComputerPuzzle").append(
+    $("#personalComputerPuzzle,#movieBuffPuzzle").append(
         "<table>"+
             "<tbody class='fixedCell'>"+
                 "<tr>"+
@@ -199,6 +301,51 @@ $(document).ready(() => {
         "</table>"
     );
 
+    $("#movieBuffResult").append(
+        "<table class='table table-bordered table-sm'>"+
+            "<thead>"+
+                "<tr>"+
+                    "<th>Name</th>"+
+                    "<th>Film</th>"+
+                    "<th>Day</th>"+
+                    "<th>Time</th>"+
+                "</tr>"+
+            "</thead>"+
+            "<tbody>"+
+                "<tr>"+
+                    "<td></td>"+
+                    "<td></td>"+
+                    "<td></td>"+
+                    "<td></td>"+
+                "</tr>"+
+                "<tr>"+
+                    "<td></td>"+
+                    "<td></td>"+
+                    "<td></td>"+
+                    "<td></td>"+
+                "</tr>"+
+                "<tr>"+
+                    "<td></td>"+
+                    "<td></td>"+
+                    "<td></td>"+
+                    "<td></td>"+
+                "</tr>"+
+                "<tr>"+
+                    "<td></td>"+
+                    "<td></td>"+
+                    "<td></td>"+
+                    "<td></td>"+
+                "</tr>"+
+                "<tr>"+
+                    "<td></td>"+
+                    "<td></td>"+
+                    "<td></td>"+
+                    "<td></td>"+
+                "</tr>"+
+            "</tbody>"+
+        "</table>"
+    );
+
     $("div#personalComputerPuzzle > table > tbody > tr").each(function (parentIndex) {
         $(this).children().each(function (childIndex) {
             if(parentIndex == 0) { // Upper row
@@ -214,23 +361,49 @@ $(document).ready(() => {
             }
         });
     });
+
+    $("div#movieBuffPuzzle > table > tbody > tr").each(function (parentIndex) {
+        $(this).children().each(function (childIndex) {
+            if(parentIndex == 0) { // Upper row
+                if(childIndex == 0) { // First Cell -> To be empty
+                    $(this).css("border","0")
+                } else {
+                    $(this).append(generateRowHeaderTable(movieBuffStructureData[0][childIndex-1].upperPane));
+                }
+            } else if(childIndex == 0) { // Left Column excepting upper left one
+                $(this).append(generateColumnHeaderTable(movieBuffStructureData[parentIndex-1][0].leftPane));
+            } else { // inner Table
+                $(this).append(generateInnerFiveByFiveTable(parentIndex-1,childIndex-1));
+            }
+        });
+    });
     
-    const refreshFinalMatrix = () => {
+    const personalComputerRefreshFinalMatrix = () => {
         $("div#personalComputerResult > table > tbody > tr").each(function (parentIndex) {
             $(this).children().each(function (childIndex) {
-                $(this).html(outputData[parentIndex][childIndex]);
+                $(this).html(personalComputerOutputData[parentIndex][childIndex]);
             });
         });
 
     }
-    refreshFinalMatrix();
+    personalComputerRefreshFinalMatrix();
+    
+    const movieBuffRefreshFinalMatrix = () => {
+        $("div#movieBuffResult > table > tbody > tr").each(function (parentIndex) {
+            $(this).children().each(function (childIndex) {
+                $(this).html(movieBuffOutputData[parentIndex][childIndex]);
+            });
+        });
+
+    }
+    movieBuffRefreshFinalMatrix();
 
     // Data Processing
 
     const correct = '<i class="fas fa-check green"></i>';
     const wrong = '<i class="fas fa-times red"></i>';
 
-    $('td[tableRowIndex]').click(function () {
+    $('div#personalComputerPuzzle > table > tbody > tr > td > table > tbody > tr > td[tableRowIndex]').click(function () {
         const tableRowIndex = $(this).attr("tableRowIndex");
         const tableColumnIndex = $(this).attr("tableColumnIndex");
         const cellRowIndex = $(this).attr("cellRowIndex");
@@ -240,10 +413,10 @@ $(document).ready(() => {
             $(this).html(wrong);
             currentDataTable.valueList[cellRowIndex][cellColumnIndex] = false;
         } else if($(this).html() == wrong){
-            $("td[tableRowIndex='"+tableRowIndex+"'][tableColumnIndex='"+tableColumnIndex+"'][cellRowIndex='"+cellRowIndex+"']").each(function () {
+            $("div#personalComputerPuzzle > table > tbody > tr > td > table > tbody > tr > td[tableRowIndex='"+tableRowIndex+"'][tableColumnIndex='"+tableColumnIndex+"'][cellRowIndex='"+cellRowIndex+"']").each(function () {
                 $(this).html(wrong);
             });
-            $("td[tableRowIndex='"+tableRowIndex+"'][tableColumnIndex='"+tableColumnIndex+"'][cellColumnIndex='"+cellColumnIndex+"']").each(function () {
+            $("div#personalComputerPuzzle > table > tbody > tr > td > table > tbody > tr > td[tableRowIndex='"+tableRowIndex+"'][tableColumnIndex='"+tableColumnIndex+"'][cellColumnIndex='"+cellColumnIndex+"']").each(function () {
                 $(this).html(wrong);
             });
             currentDataTable.valueList.forEach((row) => {row[cellColumnIndex] = false;})
@@ -253,10 +426,10 @@ $(document).ready(() => {
             $(this).html(correct);
             currentDataTable.valueList[cellRowIndex][cellColumnIndex] = true;
         } else {
-            $("td[tableRowIndex='"+tableRowIndex+"'][tableColumnIndex='"+tableColumnIndex+"'][cellRowIndex='"+cellRowIndex+"']").each(function () {
+            $("div#personalComputerPuzzle > table > tbody > tr > td > table > tbody > tr > td[tableRowIndex='"+tableRowIndex+"'][tableColumnIndex='"+tableColumnIndex+"'][cellRowIndex='"+cellRowIndex+"']").each(function () {
                 $(this).html("");
             });
-            $("td[tableRowIndex='"+tableRowIndex+"'][tableColumnIndex='"+tableColumnIndex+"'][cellColumnIndex='"+cellColumnIndex+"']").each(function () {
+            $("div#personalComputerPuzzle > table > tbody > tr > td > table > tbody > tr > td[tableRowIndex='"+tableRowIndex+"'][tableColumnIndex='"+tableColumnIndex+"'][cellColumnIndex='"+cellColumnIndex+"']").each(function () {
                 $(this).html("");
             });
             currentDataTable.valueList.forEach((row) => {row[cellColumnIndex] = false;})
@@ -266,7 +439,7 @@ $(document).ready(() => {
         }
 
         if(tableRowIndex == 0) {
-            outputData = [
+            personalComputerOutputData = [
                 ["13\'","","",""],
                 ["15\'","","",""],
                 ["15\'6","","",""],
@@ -277,12 +450,70 @@ $(document).ready(() => {
                 category.centerDatatable.valueList.forEach((valueList, valueIndex) => {
                     let hasLink = valueList.findIndex(item => item==true);
                     if(hasLink >= 0) {
-                        outputData[valueIndex][categoryIndex+1] = personalComputerStructureData[tableRowIndex][categoryIndex].upperPane.labelList[hasLink];
+                        personalComputerOutputData[valueIndex][categoryIndex+1] = personalComputerStructureData[tableRowIndex][categoryIndex].upperPane.labelList[hasLink];
                     }
                 })
             })
-            refreshFinalMatrix();
+            personalComputerRefreshFinalMatrix();
         }
     });
+
+
+
+    $('div#movieBuffPuzzle > table > tbody > tr > td > table > tbody > tr > td[tableRowIndex]').click(function () {
+        const tableRowIndex = $(this).attr("tableRowIndex");
+        const tableColumnIndex = $(this).attr("tableColumnIndex");
+        const cellRowIndex = $(this).attr("cellRowIndex");
+        const cellColumnIndex =  $(this).attr("cellColumnIndex");
+        currentDataTable = movieBuffStructureData[tableRowIndex][tableColumnIndex].centerDatatable;
+        if(!$(this).html()) {
+            $(this).html(wrong);
+            currentDataTable.valueList[cellRowIndex][cellColumnIndex] = false;
+        } else if($(this).html() == wrong){
+            $("div#movieBuffPuzzle > table > tbody > tr > td > table > tbody > tr > td[tableRowIndex='"+tableRowIndex+"'][tableColumnIndex='"+tableColumnIndex+"'][cellRowIndex='"+cellRowIndex+"']").each(function () {
+                $(this).html(wrong);
+            });
+            $("div#movieBuffPuzzle > table > tbody > tr > td > table > tbody > tr > td[tableRowIndex='"+tableRowIndex+"'][tableColumnIndex='"+tableColumnIndex+"'][cellColumnIndex='"+cellColumnIndex+"']").each(function () {
+                $(this).html(wrong);
+            });
+            currentDataTable.valueList.forEach((row) => {row[cellColumnIndex] = false;})
+            for(let index in currentDataTable.valueList[cellRowIndex]) {
+                currentDataTable.valueList[cellRowIndex][index] = false;
+            }
+            $(this).html(correct);
+            currentDataTable.valueList[cellRowIndex][cellColumnIndex] = true;
+        } else {
+            $("div#movieBuffPuzzle > table > tbody > tr > td > table > tbody > tr > td[tableRowIndex='"+tableRowIndex+"'][tableColumnIndex='"+tableColumnIndex+"'][cellRowIndex='"+cellRowIndex+"']").each(function () {
+                $(this).html("");
+            });
+            $("div#movieBuffPuzzle > table > tbody > tr > td > table > tbody > tr > td[tableRowIndex='"+tableRowIndex+"'][tableColumnIndex='"+tableColumnIndex+"'][cellColumnIndex='"+cellColumnIndex+"']").each(function () {
+                $(this).html("");
+            });
+            currentDataTable.valueList.forEach((row) => {row[cellColumnIndex] = false;})
+            for(let index in currentDataTable.valueList[cellRowIndex]) {
+                currentDataTable.valueList[cellRowIndex][index] = false;
+            }
+        }
+
+        if(tableRowIndex == 0) {
+            movieBuffOutputData = [
+                ["Jessica","","",""],
+                ["Laurie","","",""],
+                ["Mark","","",""],
+                ["Mary","","",""],
+                ["Sally","","",""]
+            ];
+            movieBuffStructureData[tableRowIndex].forEach((category, categoryIndex) => {
+                category.centerDatatable.valueList.forEach((valueList, valueIndex) => {
+                    let hasLink = valueList.findIndex(item => item==true);
+                    if(hasLink >= 0) {
+                        movieBuffOutputData[valueIndex][categoryIndex+1] = movieBuffStructureData[tableRowIndex][categoryIndex].upperPane.labelList[hasLink];
+                    }
+                })
+            })
+            movieBuffRefreshFinalMatrix();
+        }
+    });
+
 
 });

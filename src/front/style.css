@@ -30,11 +30,14 @@ table .middle-table tr td {
 
 table.table {
   table-layout: fixed;
-  width: 365px;
+  width: 450px;
   height: 164px;
 }
 
 #personalComputerResult > table > tbody > tr > td {
+  text-align: center;
+}
+#movieBuffResult > table > tbody > tr > td {
   text-align: center;
 }
 
@@ -60,8 +63,8 @@ table .middle-table {
 }
 
 .fixedCell > tr > td {
-  width: 160px;
-  height: 131px;
+  width: 224px;
+  height: 183px;
 }
 
 td {
@@ -103,4 +106,16 @@ table .side-table tr td {
   width: 75%;
   white-space: nowrap;
   overflow: hidden;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: flex;
+}
+
+.background-navbar a:hover {
+  cursor: pointer;
 }

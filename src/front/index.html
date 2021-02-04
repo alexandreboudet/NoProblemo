@@ -19,35 +19,90 @@
 
 
 <head>
-    <title>Personal Computer</title>
+    <title>Puzzle</title>
 </head>
 
 <body>
     
     <div class="container-fluid">
-        <div class="row mt-5">
-            <div class="col-md-4 offset-md-1"  id="personalComputerPuzzle">
+        <nav class="background-navbar sticky-top py-1">
+            <div
+              class="container d-flex flex-column flex-md-row justify-content-between"
+            >
+              <a class="py-2 d-none d-md-inline-block" id="personalComputerButton"
+                >Personal Computer</a
+              >
+              <a class="py-2 d-none d-md-inline-block" id="movieBuffButton"
+                >Movie Buffs Associated</a
+              >
+              <a class="py-2 d-none d-md-inline-block" id="pastaWineButton"
+                >Pasta and Wine</a
+              >
+            </div>
+            <hr/>
+          </nav>
+        <div id="personalComputer" class="show">
+            <div class="row mt-5">
+                <div class="col-md-5 offset-md-1"  id="personalComputerPuzzle">
+    
+                </div>
+                <div class="col-md-5 offset-md-1">
+                    <div id="personalComputerResult">
+                        
+                    </div>
+                    <button class="btn btn-md btn-success mt-2 mb-4" id="personalComputercheckAnswer">Check Answer</button>
+                    <div>
+                        <ul>
+                                    
+                            <li>1. Andrew bought the computer which was three hundred Euros less than the PC which has a processor that is 0.4 MHz more powerful than the one which has a 21.5' screen.</li>
+                            
+                            <li>2. The five computers aren: the one chosen by Andrew (which doesn't have the 27' screen), the one which has the 2.0-MHz processor, the computer that has a 250 GB HD, the one which has a price of 1,149 Euros and the computer (which doesn't have the 15' screen) that has the HD bigger than the one chosen by Andrew but smaller than that the one which has the 2.7 MHz processor.</li>
+                            
+                            <li>3. The computer with the 320 Gb HD has either the 2.0 or the 2.3 MHz processor.The processor of the computer which has the 15' screen is more powerful than the one in the computer that costs 999 euros but less powerful than the processor that is included in the 1,349 Euros computer.</li>
+                            
+                            <li>4. The computer that has the 27' screen doesn't have the 320 Gb hard drive. The 500 GB HD is included in the computer that has a more powerful professor and a larger size screen than the one which costs 699 euros (which doesn't include the 320 Gb HD).</li>
+                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
 
-            </div>
-            <div class="col-md-5 offset-md-1">
-                <div id="personalComputerResult">
-                    
+        </div>
+        <div id="movieBuff" class="hide">
+            <div class="row mt-5">
+                <div class="col-md-5 offset-md-1"  id="movieBuffPuzzle">
+    
                 </div>
-                <button class="btn btn-md btn-success mt-2 mb-4" id="checkAnswer">Check Answer</button>
-                <div>
-                    <ul>
+                <div class="col-md-5 offset-md-1">
+                    <div id="movieBuffResult">
+                        
+                    </div>
+                    <button class="btn btn-md btn-success mt-2 mb-4" id="movieBuffcheckAnswer">Check Answer</button>
+                    <div>
+                        <ul>
                                 
-                        <li>1. Andrew bought the computer which was three hundred Euros less than the PC which has a processor that is 0.4 MHz more powerful than the one which has a 21.5' screen.</li>
-                        
-                        <li>2. The five computers aren: the one chosen by Andrew (which doesn't have the 27' screen), the one which has the 2.0-MHz processor, the computer that has a 250 GB HD, the one which has a price of 1,149 Euros and the computer (which doesn't have the 15' screen) that has the HD bigger than the one chosen by Andrew but smaller than that the one which has the 2.7 MHz processor.</li>
-                        
-                        <li>3. The computer with the 320 Gb HD has either the 2.0 or the 2.3 MHz processor.The processor of the computer which has the 15' screen is more powerful than the one in the computer that costs 999 euros but less powerful than the processor that is included in the 1,349 Euros computer.</li>
-                        
-                        <li>4. The computer that has the 27' screen doesn't have the 320 Gb hard drive. The 500 GB HD is included in the computer that has a more powerful professor and a larger size screen than the one which costs 699 euros (which doesn't include the 320 Gb HD).</li>
-                        
-                    </ul>
+                            <li>1. Of the 20-hundreds releases, neither of which was Jessica's choice, one opened the week and one closed the week.</li>
+                            
+                            <li>2. The latest of the 19-hundreds releases was shown at 30 minutes past the hour.</li>
+                            
+                            <li>3. The releases shown before 8:00 pm were on consecutive days, as were the releases shown after 8:00 pm.</li>
+                            
+                            <li>4. One of the men and one of the women had a showing before 8:00 pm, but neither was mid-week.</li>
+                            
+                            <li>5. Mark, whose choice was Scarecrow, had a showing at a time of one hour and five minutes after that of Scarface.</li>
+                            
+                            <li>6. Neither Miss Farmer nor Miss Peters had a showing on an even-numbered day</li>
+                            
+                            <li>7. 88 Minutes showed at a time both 40 minutes to the hour and 40 minutes after the Thursday showing.</li>
+                            
+                        </ul>
+                    </div>
                 </div>
             </div>
+
+        </div>
+        <div id="pastaWine" class="hide">
+            azea
         </div>
     </div>
 
