@@ -23,7 +23,7 @@ $(document).ready(() => {
 
         console.log(personalComputerDznData);
     });
-    
+
     $("#movieBuffcheckAnswer").click(() => {
         let movieBuffDznData = [
             [], // Personne_dzn
@@ -67,6 +67,29 @@ $(document).ready(() => {
         console.log(movieBuffDznData);
     });
 
+    $("#pastaWinecheckAnswer").click(() => {
+        let pastaWineDznData = [
+            [], // Shirt
+            [], // Surname
+            [], // Pasta
+            [], // Wine
+            [] // Age
+        ];
+
+        /*for (let i = 0; i < 4; i++) {
+            for (let j = 0; j < 5; j++) {
+                let tempInd = movieBuffGlobalData[i].findIndex((element) => element == movieBuffOutputData[j][i]);
+                if(tempInd >= 0){
+                    movieBuffDznData[i].push(tempInd+1);
+                } else {
+                    movieBuffDznData[i].push("_");
+                }
+            }
+        }*/
+
+        console.log(pastaWineDznData);
+    });
+
     // Navbar
 
     $("#personalComputerButton").click(function () {
@@ -87,6 +110,13 @@ $(document).ready(() => {
 
 
     // Init
+
+    const shirtData = ['blue','green','red','white','yellow'];
+    const nameData = ['Andrea','Holly','Julie','Leslie','Victoria'];
+    const surnameData = ['Brown','Davis','Lopes','Miller','Wilson'];
+    const pastaData = ['farfalle','lasagne','penne','spaghetti','ravioli'];
+    const wineData = ['Australian','Argentine','Chilean','French','Italian'];
+    const ageData = ['30 years','35 years','40 years','45 years','50 years'];
 
     let personalComputerOutputData = [
         ["13\'","","",""],
