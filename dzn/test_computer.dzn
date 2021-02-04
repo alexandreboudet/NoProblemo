@@ -1,4 +1,4 @@
 Monitor_dzn= [1,2,3,4,5];
-Processor_dzn= [1,2,3,4,5];
-Hard_disk_dzn= [2,1,3,5,4];
-Price_dzn= [2,1,5,3,4];
+Processor_dzn= [1,2,4,3,5];
+Hard_disk_dzn= [5,4,3,2,1];
+Price_dzn= [1,4,2,3,5];

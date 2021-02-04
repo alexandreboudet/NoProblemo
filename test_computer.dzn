@@ -1,9 +1,0 @@
-% exemple de modele dzn computerpuzzle
-%["13 pouce"," 15 pouce","15.6 pouce","21.5 pouce","27 pouce"]
-Monitor_dzn= [_,1,_,_,_];
-%["2.0 MHZ","2.3 MHZ","2.5 MHZ","2.7 MHZ","3.1 MHZ"]
-Processor_dzn=[_,1,_,_,2];
-%["250 Gb","320 Gb","500 Gb","750 Gb","1024 Gb"]
-Hard_disk_dzn=[_,_,_,_,1];
-%["699 $","999$","1149 $","1349 $","1649 $"]
-Price_dzn= [_,_,_,_,1];
