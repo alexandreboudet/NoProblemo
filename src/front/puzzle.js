@@ -515,5 +515,11 @@ $(document).ready(() => {
         }
     });
 
-
 });
+
+function checkAnswer(params) {
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open("GET", "http://localhost:3000/checkAnswer", false);
+    xmlHttp.send(null);
+    alert(xmlHttp.responseText)
+}
