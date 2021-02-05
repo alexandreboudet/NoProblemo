@@ -206,7 +206,7 @@ $(document).ready(() => {
 
     const filmHeader = {
         title : "Film",
-        labelList : ["88 Minutes","Donnie Brasco","Scarecrow","Scarface","The Recruit"]
+        labelList : ["Donnie_Brasco","The_recruit","Scarcrow","88_Minutes","Scarface"]
     }
     const dayHeader = {
         title : "Day",
