@@ -20,10 +20,10 @@ app.get('/', (req, res) => {
 
 const checkAnswer = (request, response) => {
 
-    content = "Monitor_dzn= ["+request.body.array[0]+"];\n"+
-              "Processor_dzn= ["+request.body.array[1]+"];\n"+
-              "Hard_disk_dzn= ["+request.body.array[2]+"];\n"+
-              "Price_dzn= ["+request.body.array[3]+"];";
+    content = "Monitor_dzn= ["+request.body.array[0]+"];\n";
+    content += request.body.array[1].filter(item => item != '_').length>0 ? "Processor_dzn= ["+request.body.array[1]+"];\n" : "%Processor_dzn= ["+request.body.array[1]+"];\n" ;
+    content += request.body.array[2].filter(item => item != '_').length>0 ? "Hard_disk_dzn= ["+request.body.array[2]+"];\n" : "%Hard_disk_dzn= ["+request.body.array[2]+"];\n" ;
+    content += request.body.array[3].filter(item => item != '_').length>0 ? "Price_dzn= ["+request.body.array[3]+"];" : "%Price_dzn= ["+request.body.array[3]+"];" ;
 
     console.log(content);
 
@@ -47,10 +47,10 @@ const checkAnswer = (request, response) => {
 
 const checkAnswerAlPacino = (request, response) => {
 
-  content = "Personne_dzn= ["+request.body.array[0]+"];\n"+
-            "Film_dzn= ["+request.body.array[1]+"];\n"+
-            "Jour_dzn= ["+request.body.array[2]+"];\n"+
-            "Horaire_dzn= ["+request.body.array[3]+"];";
+  content = "Personne_dzn= ["+request.body.array[0]+"];\n";
+  content += request.body.array[1].filter(item => item != '_').length>0 ? "Film_dzn= ["+request.body.array[1]+"];\n" : "%Film_dzn= ["+request.body.array[1]+"];\n" ;
+  content += request.body.array[2].filter(item => item != '_').length>0 ? "Jour_dzn= ["+request.body.array[2]+"];\n" : "%Jour_dzn= ["+request.body.array[2]+"];\n" ;
+  content += request.body.array[3].filter(item => item != '_').length>0 ? "Horaire_dzn= ["+request.body.array[3]+"];" : "%Horaire_dzn= ["+request.body.array[3]+"];" ;
 
   console.log(content);
 
@@ -80,6 +80,14 @@ const checkAnswerPastaWine = (request, response) => {
             "Pasta= ["+request.body.array[3]+"];\n"+
             "Wine= ["+request.body.array[4]+"];\n"+
             "Age= ["+request.body.array[5]+"];";
+
+
+  content = request.body.array[0].filter(item => item != '_').length>0 ? "Shirt= ["+request.body.array[0]+"];\n" : "%Shirt= ["+request.body.array[0]+"];\n" ;
+  content += request.body.array[1].filter(item => item != '_').length>0 ? "Name= ["+request.body.array[1]+"];\n" : "%Name= ["+request.body.array[1]+"];\n" ;
+  content += request.body.array[2].filter(item => item != '_').length>0 ? "Surname= ["+request.body.array[2]+"];\n" : "%Surname= ["+request.body.array[2]+"];\n" ;
+  content += request.body.array[3].filter(item => item != '_').length>0 ? "Pasta= ["+request.body.array[3]+"];\n" : "%Pasta= ["+request.body.array[3]+"];\n" ;
+  content += request.body.array[4].filter(item => item != '_').length>0 ? "Wine= ["+request.body.array[4]+"];\n" : "%Wine= ["+request.body.array[4]+"];\n" ;
+  content += request.body.array[5].filter(item => item != '_').length>0 ? "Age= ["+request.body.array[5]+"];\n" : "%Age= ["+request.body.array[5]+"];\n" ;
 
   console.log(content);
 
