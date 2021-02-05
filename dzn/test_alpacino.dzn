@@ -1,0 +1,4 @@
+Personne_dzn= [1,2,3,4,5];
+Film_dzn= [1,2,3,4,5];
+Jour_dzn= [3,5,_,1,_];
+Horaire_dzn= [740,_,_,_,_];

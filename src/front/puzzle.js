@@ -26,7 +26,10 @@ $(document).ready(() => {
         }
         
         $.post("http://localhost:3000/checkAnswer", data, function(res, status) {
-            alert(res)  
+            if(res.includes("True"))
+                alert("Bravo ! Vous avez trouvé la solution");
+            else
+                alert("Dommage, ce n'est pas la solution !")
         })
     });
     
@@ -75,7 +78,10 @@ $(document).ready(() => {
         }
         
         $.post("http://localhost:3000/checkAnswerAlPacino", data, function(res, status) {
-            alert(res)  
+            if(res.includes("True"))
+                alert("Bravo ! Vous avez trouvé la solution");
+            else
+                alert("Dommage, ce n'est pas la solution !") 
         })
     });
 
@@ -145,7 +151,7 @@ $(document).ready(() => {
 
     const filmHeader = {
         title : "Film",
-        labelList : ["88 Minutes","Donnie Brasco","Scarecrow","Scarface","The Recruit"]
+        labelList : ["Donnie Brasco","The Recruit","Scarecrow","88 Minutes","Scarface"]
     }
     const dayHeader = {
         title : "Day",
