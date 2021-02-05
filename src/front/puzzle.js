@@ -26,7 +26,12 @@ $(document).ready(() => {
         }
         
         $.post("http://localhost:3000/checkAnswer", data, function(res, status) {
-            alert(res)  
+            $('.alert').remove();
+            if(res.substr(0,4) == 'True') {
+                $('body').prepend(successAlert);
+            } else {
+                $('body').prepend(errorAlert);
+            }
         })
     });
 
@@ -42,7 +47,6 @@ $(document).ready(() => {
             for (let j = 0; j < 5; j++) {
                 let tempInd = movieBuffGlobalData[i].findIndex((element) => element == movieBuffOutputData[j][i]);
                 if(tempInd >= 0){
-                    console.log(i);
                     if(i == 3) {
                         switch(tempInd) {
                             case 0: 
@@ -75,7 +79,12 @@ $(document).ready(() => {
         }
         
         $.post("http://localhost:3000/checkAnswerAlPacino", data, function(res, status) {
-            alert(res)  
+            $('.alert').remove();
+            if(res.substr(0,4) == 'True') {
+                $('body').prepend(successAlert);
+            } else {
+                $('body').prepend(errorAlert);
+            }
         })
     });
 
@@ -86,12 +95,17 @@ $(document).ready(() => {
             [], // Surname
             [], // Pasta
             [], // Wine
-            [] // Age
+            []  // Age
         ];
 
 
         $("select").each(function(rowIndex) {
-            pastaWineDznData[rowIndex % 6].push($(this).val() == -1 ? "_" : $(this).val());
+            pastaWineDznData[rowIndex % 6].push("_");
+        });
+        $("select").each(function(rowIndex) {
+            if($(this).val() != -1) {
+                pastaWineDznData[rowIndex % 6][$(this).val()] = Math.floor(rowIndex/6)+1;
+            }
         });
 
         console.table(pastaWineDznData);
@@ -101,7 +115,12 @@ $(document).ready(() => {
         }
         
         $.post("http://localhost:3000/checkAnswerPastaWine", data, function(res, status) {
-            alert(res)  
+            $('.alert').remove();
+            if(res.substr(0,4) == 'True') {
+                $('body').prepend(successAlert);
+            } else {
+                $('body').prepend(errorAlert);
+            }
         })
     });
 
@@ -126,6 +145,21 @@ $(document).ready(() => {
 
     // Init
 
+
+    const errorAlert = 
+    "<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">\n" +
+    "        <strong>Erreur !</strong> Solution insatisfiable.\n" +
+    "        <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
+    "            <span aria-hidden=\"true\">&times;</span>\n" +
+    "        </button>\n" +
+    "    </div>";
+    const successAlert = 
+    "    <div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">\n" +
+    "        <strong>Félicitations !</strong> Puzzle résolu.\n" +
+    "        <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
+    "            <span aria-hidden=\"true\">&times;</span>\n" +
+    "        </button>\n" +
+    "    </div>";
 
     let personalComputerOutputData = [
         ["13\'","","",""],
@@ -641,10 +675,18 @@ $(document).ready(() => {
         wineData,
         ageData
     ]
+    const globalPastaWineDataName = [
+        'shirtData',
+        'nameData',
+        'surnameData',
+        'pastaData',
+        'wineData',
+        'ageData'
+    ]
 
     
-    const generateSelect = (rowIndex) => {
-        let generatedTable = "<li><select><option value=\"-1\"></option>";
+    const generateSelect = (rowIndex,columnIndex) => {
+        let generatedTable = "<li><select selectIndex=\""+columnIndex+"\" dataName=\""+globalPastaWineDataName[rowIndex]+"\" class=\"form-control mb-2\"><option value=\"-1\"></option>";
         globalPastaWineData[rowIndex].forEach((item, itemIndex) => {
             generatedTable += "<option value=\""+itemIndex+"\">"+item+"</option>";
         })
@@ -654,8 +696,36 @@ $(document).ready(() => {
 
     $("div.pastaWineTables > ul").each(function (columnIndex) {
         for(let rowIndex = 0; rowIndex < 6; rowIndex++) {
-            $(this).append(generateSelect(rowIndex));
+            $(this).append(generateSelect(rowIndex,columnIndex));
         }
+    });
+
+    var previous;
+    $("select").on('focus', function () {
+        previous =  $(this).val();
+    }).change(function() {
+        const currentSelectIndex = $(this).attr("selectIndex");
+        if($(this).val() != -1) {
+            const newSelectedValue = $(this).val();
+            $("select[dataName=\""+$(this).attr('dataName')+"\"]").each(function (parentIndex) {
+                if(currentSelectIndex != parentIndex) {
+                    $(this).children().each(function (childIndex) {
+                        if(newSelectedValue == $(this).val()) {
+                            $(this).attr('disabled','true');
+                        }
+                    })
+                }
+            })  
+        }
+        $("select[dataName=\""+$(this).attr('dataName')+"\"]").each(function (parentIndex) {
+                if(currentSelectIndex != parentIndex) {
+                    $(this).children().each(function (childIndex) {
+                        if(previous == $(this).val()) {
+                            $(this).removeAttr('disabled');
+                        }
+                    })
+                }
+            }) 
     });
 
 });

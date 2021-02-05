@@ -150,3 +150,18 @@ hr {
   margin-top: 0.5rem !important;
   margin-bottom: 0.5rem !important;
 }
+
+.container-columns > div > ul.header > li {
+  height: 46px !important;
+  padding-top: 5px;
+  padding-left: 5px;
+  text-align: center;
+}
+
+.pastaWineTables > ul > li {
+  padding-right: 40px;
+}
+
+h5 {
+  text-align: center;
+}

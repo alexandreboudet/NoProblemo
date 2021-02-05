@@ -41,7 +41,7 @@ const checkAnswer = (request, response) => {
             console.log(`stderr: ${stderr}`);
             return;
         }
-        response.status(200).json(`stdout: ${stdout}`) 
+      response.status(200).json(`${stdout}`) 
     });
 }
 
@@ -68,7 +68,7 @@ const checkAnswerAlPacino = (request, response) => {
           console.log(`stderr: ${stderr}`);
           return;
       }
-      response.status(200).json(`stdout: ${stdout}`) 
+      response.status(200).json(`${stdout}`) 
   });
 }
 
@@ -97,7 +97,7 @@ const checkAnswerPastaWine = (request, response) => {
           console.log(`stderr: ${stderr}`);
           return;
       }
-      response.status(200).json(`stdout: ${stdout}`) 
+      response.status(200).json(`${stdout}`) 
   });
 }
 
