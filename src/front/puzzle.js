@@ -20,8 +20,14 @@ $(document).ready(() => {
                 }
             }
         }
-
-        console.log(personalComputerDznData);
+        
+        var data = {
+            array: personalComputerDznData 
+        }
+        
+        $.post("http://localhost:3000/checkAnswer", data, function(res, status) {
+            alert(res)  
+        })
     });
 
     $("#movieBuffcheckAnswer").click(() => {
@@ -64,7 +70,13 @@ $(document).ready(() => {
             }
         }
 
-        console.log(movieBuffDznData);
+        var data = {
+            array: movieBuffDznData 
+        }
+        
+        $.post("http://localhost:3000/checkAnswerAlPacino", data, function(res, status) {
+            alert(res)  
+        })
     });
 
     $("#pastaWinecheckAnswer").click(() => {
@@ -614,6 +626,5 @@ $(document).ready(() => {
             movieBuffRefreshFinalMatrix();
         }
     });
-
 
 });
