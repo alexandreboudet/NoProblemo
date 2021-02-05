@@ -82,24 +82,27 @@ $(document).ready(() => {
     $("#pastaWinecheckAnswer").click(() => {
         let pastaWineDznData = [
             [], // Shirt
+            [], // Name
             [], // Surname
             [], // Pasta
             [], // Wine
             [] // Age
         ];
 
-        /*for (let i = 0; i < 4; i++) {
-            for (let j = 0; j < 5; j++) {
-                let tempInd = movieBuffGlobalData[i].findIndex((element) => element == movieBuffOutputData[j][i]);
-                if(tempInd >= 0){
-                    movieBuffDznData[i].push(tempInd+1);
-                } else {
-                    movieBuffDznData[i].push("_");
-                }
-            }
-        }*/
 
-        console.log(pastaWineDznData);
+        $("select").each(function(rowIndex) {
+            pastaWineDznData[rowIndex % 6].push($(this).val() == -1 ? "_" : $(this).val());
+        });
+
+        console.table(pastaWineDznData);
+        
+        var data = {
+            array: pastaWineDznData 
+        }
+        
+        $.post("http://localhost:3000/checkAnswerPastaWine", data, function(res, status) {
+            alert(res)  
+        })
     });
 
     // Navbar
@@ -123,12 +126,6 @@ $(document).ready(() => {
 
     // Init
 
-    const shirtData = ['blue','green','red','white','yellow'];
-    const nameData = ['Andrea','Holly','Julie','Leslie','Victoria'];
-    const surnameData = ['Brown','Davis','Lopes','Miller','Wilson'];
-    const pastaData = ['farfalle','lasagne','penne','spaghetti','ravioli'];
-    const wineData = ['Australian','Argentine','Chilean','French','Italian'];
-    const ageData = ['30 years','35 years','40 years','45 years','50 years'];
 
     let personalComputerOutputData = [
         ["13\'","","",""],
@@ -624,6 +621,40 @@ $(document).ready(() => {
                 })
             })
             movieBuffRefreshFinalMatrix();
+        }
+    });
+
+
+    
+    const shirtData = ['blue','green','red','white','yellow'];
+    const nameData = ['Andrea','Holly','Julie','Leslie','Victoria'];
+    const surnameData = ['Brown','Davis','Lopes','Miller','Wilson'];
+    const pastaData = ['farfalle','lasagne','penne','spaghetti','ravioli'];
+    const wineData = ['Australian','Argentine','Chilean','French','Italian'];
+    const ageData = ['30 years','35 years','40 years','45 years','50 years'];
+
+    const globalPastaWineData = [
+        shirtData,
+        nameData,
+        surnameData,
+        pastaData,
+        wineData,
+        ageData
+    ]
+
+    
+    const generateSelect = (rowIndex) => {
+        let generatedTable = "<li><select><option value=\"-1\"></option>";
+        globalPastaWineData[rowIndex].forEach((item, itemIndex) => {
+            generatedTable += "<option value=\""+itemIndex+"\">"+item+"</option>";
+        })
+        generatedTable += "</select></li>";
+        return generatedTable;
+    }
+
+    $("div.pastaWineTables > ul").each(function (columnIndex) {
+        for(let rowIndex = 0; rowIndex < 6; rowIndex++) {
+            $(this).append(generateSelect(rowIndex));
         }
     });
 
